@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "DHL Express",
+    "basePrice": 25,
+    "taxFees": 5,
+    "totalPrice": 30,
+    "estimatedDeliveryTimeline": "2",
+    "image": "Images/DHL.png"
+  },
+  {
+    "id": "2",
+    "name": "FedEx International",
+    "basePrice": 22,
+    "taxFees": 4.4,
+    "totalPrice": 26.4,
+    "estimatedDeliveryTimeline": "4",
+    "image": "Images/FedEx.jpg"
+  },
+  {
+    "id": "3",
+    "name": "PDC",
+    "basePrice": 18,
+    "taxFees": 3.6,
+    "totalPrice": 21.6,
+    "estimatedDeliveryTimeline": "5",
+    "image": "Images/PDC.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Aramex",
+    "basePrice": 15,
+    "taxFees": 3,
+    "totalPrice": 18,
+    "estimatedDeliveryTimeline": "7",
+    "image": "Images/aramex.jpg"
+  },
+  {
+    "id": "5",
+    "name": "J&T Express",
+    "basePrice": 10,
+    "taxFees": 2,
+    "totalPrice": 12,
+    "estimatedDeliveryTimeline": "3",
+    "image": "Images/JT.png"
+  }
+]

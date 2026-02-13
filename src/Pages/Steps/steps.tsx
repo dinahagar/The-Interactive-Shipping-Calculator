@@ -1,15 +1,9 @@
-import {
-  Box,
-  Button,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Step, StepLabel, Stepper } from "@mui/material";
 import React from "react";
 import Origin from "./Components/OriginDetails/origin";
 import Destination from "./Components/DestinationDetails/destination";
 import PackageDim from "./Components/PackageDimensions/package-dim";
+import Couriercard from "../CourierCard/couriercard";
 
 const steps = [
   {
@@ -51,28 +45,33 @@ const Steps = () => {
           },
         }}
       >
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps: { completed?: boolean } = {};
-            return (
-              <Step key={label.label} {...stepProps}>
-                <StepLabel>{label.label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
         {activeStep === steps.length ? (
           <>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
+            <Couriercard />
+
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset}>Reset</Button>
+              <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                <Button variant="contained">Next</Button>
+                <Button variant="contained" color="error" onClick={handleReset}>
+                  Reset
+                </Button>
+              </Box>
             </Box>
           </>
         ) : (
           <>
+            <Stepper activeStep={activeStep}>
+              {steps.map((label, index) => {
+                const stepProps: { completed?: boolean } = {};
+                return (
+                  <Step key={label.label} {...stepProps}>
+                    <StepLabel>{label.label}</StepLabel>
+                  </Step>
+                );
+              })}
+            </Stepper>
+
             <div>{steps[activeStep].component}</div>
 
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
