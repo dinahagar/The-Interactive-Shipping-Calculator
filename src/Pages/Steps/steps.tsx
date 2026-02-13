@@ -42,58 +42,67 @@ const Steps = () => {
   };
 
   return (
-    <Box sx={{ width: "80%", padding: '45px 20px', paddingLeft: '10%' }}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          return (
-            <Step key={label.label} {...stepProps}>
-              <StepLabel>{label.label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </>
-      ) : (
-        <>
-          <div>{steps[activeStep].component}</div>
+    <div>
+      <Box
+        sx={{
+          padding: {
+            xs: "10px",
+            md: "30px",
+          },
+        }}
+      >
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps: { completed?: boolean } = {};
+            return (
+              <Step key={label.label} {...stepProps}>
+                <StepLabel>{label.label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        {activeStep === steps.length ? (
+          <>
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              All steps completed - you&apos;re finished
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box sx={{ flex: "1 1 auto" }} />
+              <Button onClick={handleReset}>Reset</Button>
+            </Box>
+          </>
+        ) : (
+          <>
+            <div>{steps[activeStep].component}</div>
 
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ 
-                mr: 1,
-                backgroundColor: 'rgba(0, 0, 0, 0.26)',
-                color: '#1976d2'
-              }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button 
-              onClick={handleNext}
-              sx={{
-                backgroundColor: '#1976d2',
-                color: '#fff'
-              }}
-            >
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
-            </Button>
-          </Box>
-        </>
-      )}
-    </Box>
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Button
+                color="inherit"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{
+                  mr: 1,
+                  backgroundColor: "rgba(0, 0, 0, 0.26)",
+                  color: "#1976d2",
+                }}
+              >
+                Back
+              </Button>
+              <Box sx={{ flex: "1 1 auto" }} />
+              <Button
+                onClick={handleNext}
+                sx={{
+                  backgroundColor: "#1976d2",
+                  color: "#fff",
+                }}
+              >
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
+              </Button>
+            </Box>
+          </>
+        )}
+      </Box>
+    </div>
   );
 };
 
