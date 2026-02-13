@@ -52,8 +52,8 @@ const Steps = () => {
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
               <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="contained">Next</Button>
-                <Button variant="contained" color="error" onClick={handleReset}>
+                <Button variant="contained" sx={{ textTransform: 'none' }}>Next</Button>
+                <Button variant="contained" color="error" onClick={handleReset} sx={{ textTransform: 'none' }}>
                   Reset
                 </Button>
               </Box>
@@ -83,6 +83,7 @@ const Steps = () => {
                   mr: 1,
                   backgroundColor: "rgba(0, 0, 0, 0.26)",
                   color: "#1976d2",
+                  textTransform: 'none'
                 }}
               >
                 Back
@@ -93,6 +94,7 @@ const Steps = () => {
                 sx={{
                   backgroundColor: "#1976d2",
                   color: "#fff",
+                  textTransform: 'none'
                 }}
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
