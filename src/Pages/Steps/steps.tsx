@@ -1,4 +1,15 @@
-import { Box, Button, Step, StepLabel, Stepper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Step,
+  StepLabel,
+  Stepper,
+} from "@mui/material";
 import React from "react";
 import Origin from "./Components/OriginDetails/origin";
 import Destination from "./Components/DestinationDetails/destination";
@@ -22,6 +33,7 @@ const steps = [
 
 const Steps = () => {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -31,8 +43,17 @@ const Steps = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleOpenPopup = () => {
+    setOpen(true);
+  };
+
   const handleReset = () => {
     setActiveStep(0);
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -51,9 +72,22 @@ const Steps = () => {
 
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="contained" sx={{ textTransform: 'none' }}>Next</Button>
-                <Button variant="contained" color="error" onClick={handleReset} sx={{ textTransform: 'none' }}>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Button variant="contained" sx={{ textTransform: "none" }}>
+                  Next
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleOpenPopup}
+                  sx={{ textTransform: "none" }}
+                >
                   Reset
                 </Button>
               </Box>
@@ -83,7 +117,7 @@ const Steps = () => {
                   mr: 1,
                   backgroundColor: "rgba(0, 0, 0, 0.26)",
                   color: "#1976d2",
-                  textTransform: 'none'
+                  textTransform: "none",
                 }}
               >
                 Back
@@ -94,7 +128,7 @@ const Steps = () => {
                 sx={{
                   backgroundColor: "#1976d2",
                   color: "#fff",
-                  textTransform: 'none'
+                  textTransform: "none",
                 }}
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
@@ -103,6 +137,26 @@ const Steps = () => {
           </>
         )}
       </Box>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            All you data will be removed.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} sx={{ textTransform: 'none' }} variant="outlined">Cancel</Button>
+          <Button onClick={handleReset} sx={{ textTransform: 'none' }} variant="contained" autoFocus>
+            Sure
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
