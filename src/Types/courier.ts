@@ -4,6 +4,6 @@ export interface Courier {
   basePrice: number;
   taxFees: number;
   totalPrice: number;
-  estimatedDeliveryTimeline: string;
+  estimatedDeliveryTimeline: number;
   image: string;
 }

@@ -5,7 +5,7 @@
     "basePrice": 25,
     "taxFees": 5,
     "totalPrice": 30,
-    "estimatedDeliveryTimeline": "2",
+    "estimatedDeliveryTimeline": 2,
     "image": "Images/DHL.png"
   },
   {
@@ -14,7 +14,7 @@
     "basePrice": 22,
     "taxFees": 4.4,
     "totalPrice": 26.4,
-    "estimatedDeliveryTimeline": "4",
+    "estimatedDeliveryTimeline": 4,
     "image": "Images/FedEx.jpg"
   },
   {
@@ -23,7 +23,7 @@
     "basePrice": 18,
     "taxFees": 3.6,
     "totalPrice": 21.6,
-    "estimatedDeliveryTimeline": "5",
+    "estimatedDeliveryTimeline": 5,
     "image": "Images/PDC.jpg"
   },
   {
@@ -32,7 +32,7 @@
     "basePrice": 15,
     "taxFees": 3,
     "totalPrice": 18,
-    "estimatedDeliveryTimeline": "7",
+    "estimatedDeliveryTimeline": 7,
     "image": "Images/aramex.jpg"
   },
   {
@@ -41,7 +41,7 @@
     "basePrice": 10,
     "taxFees": 2,
     "totalPrice": 12,
-    "estimatedDeliveryTimeline": "3",
+    "estimatedDeliveryTimeline": 3,
     "image": "Images/JT.png"
   }
 ]
