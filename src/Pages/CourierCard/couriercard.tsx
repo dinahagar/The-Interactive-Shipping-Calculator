@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useGetAllCouriersQuery } from "../../Store/Services/courier";
 import { Badge, Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import { Courier } from "../../Types/courier";
 import { StyledCardHeader, StyledH1, StyledImg } from "./couriercard.styles";
 import CourierSkeleton from "../../Skeleton/courierSkeleton";
 import { theme } from "../../Theme/Theme";
+import { CourierContext } from "../../Context/courierContext";
+import { setSelectedCourier } from "../../Store/Reducers/courierSlice";
 
 const Couriercard = () => {
   const { data, isLoading } = useGetAllCouriersQuery<{
     data: Courier[];
     isLoading: boolean;
   }>([]);
+
+  const context = useContext(CourierContext);
+  if (!context) throw new Error("Must be used inside Provider");
+
+  const { dispatch } = context;
+
   const [selectedId, setSelectedId] = useState<number>();
 
   const lowestPrice = Math.min(...(data?.map((p) => p?.totalPrice) ?? []));
   const lowestEst = Math.min(
     ...(data?.map((p) => p?.estimatedDeliveryTimeline) ?? []),
   );
+
+  const handleSelectCourier = (id: number) => {
+    setSelectedId(id);
+
+    const selectedCourier = data.find((c) => c.id === id);
+
+    if (selectedCourier) {
+      dispatch(setSelectedCourier(selectedCourier));
+    }
+  };
 
   return (
     <div>
@@ -53,9 +71,11 @@ const Couriercard = () => {
                         cursor: "pointer",
                         backgroundColor: `${theme.colors.linen}`,
                         border:
-                          selectedId === item.id ? `solid 3px ${theme.colors.primary}` : "none",
+                          selectedId === item.id
+                            ? `solid 3px ${theme.colors.primary}`
+                            : "none",
                       }}
-                      onClick={() => setSelectedId(item.id)}
+                      onClick={() => handleSelectCourier(item.id)}
                     >
                       <StyledCardHeader
                         avatar={<StyledImg src={item.image} alt="" />}

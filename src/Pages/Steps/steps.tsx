@@ -80,9 +80,6 @@ const Steps = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Button variant="contained" sx={{ textTransform: "none" }}>
-                  Next
-                </Button>
                 <Button
                   variant="contained"
                   color="error"
@@ -90,6 +87,9 @@ const Steps = () => {
                   sx={{ textTransform: "none" }}
                 >
                   Reset
+                </Button>
+                <Button variant="contained" sx={{ textTransform: "none" }}>
+                  Next
                 </Button>
               </Box>
             </Box>
@@ -152,8 +152,19 @@ const Steps = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} sx={{ textTransform: 'none' }} variant="outlined">Cancel</Button>
-          <Button onClick={handleReset} sx={{ textTransform: 'none' }} variant="contained" autoFocus>
+          <Button
+            onClick={handleClose}
+            sx={{ textTransform: "none" }}
+            variant="outlined"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleReset}
+            sx={{ textTransform: "none" }}
+            variant="contained"
+            autoFocus
+          >
             Sure
           </Button>
         </DialogActions>

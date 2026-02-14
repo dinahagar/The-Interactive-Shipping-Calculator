@@ -1,22 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
-// import { Courier } from '../../couriers.mock'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Courier } from "../../Types/courier";
 
-export interface CounterState {
-  value: number
+export interface CourierState {
+  couriers: Courier[];
+  selectedCourier: Courier | null;
 }
 
-const initialState: CounterState = {
-  value: 0,
-}
+const initialState: CourierState = {
+  couriers: [],
+  selectedCourier: null,
+};
 
 export const courierSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
   reducers: {
+    setSelectedCourier: (state, action: PayloadAction<Courier>) => {
+      state.selectedCourier = action.payload;
+    },
   },
-})
+});
 
-// export const {  } = courierSlice.actions
+export const { setSelectedCourier } = courierSlice.actions;
 
-export default courierSlice.reducer
+export default courierSlice.reducer;
