@@ -15,6 +15,7 @@ import Origin from "./Components/OriginDetails/origin";
 import Destination from "./Components/DestinationDetails/destination";
 import PackageDim from "./Components/PackageDimensions/package-dim";
 import Couriercard from "../CourierCard/couriercard";
+import { theme } from "../../Theme/Theme";
 
 const steps = [
   {
@@ -115,8 +116,8 @@ const Steps = () => {
                 onClick={handleBack}
                 sx={{
                   mr: 1,
-                  backgroundColor: "rgba(0, 0, 0, 0.26)",
-                  color: "#1976d2",
+                  backgroundColor: `${theme.colors.darkgrey}`,
+                  color: `${theme.colors.primary}`,
                   textTransform: "none",
                 }}
               >
@@ -126,8 +127,8 @@ const Steps = () => {
               <Button
                 onClick={handleNext}
                 sx={{
-                  backgroundColor: "#1976d2",
-                  color: "#fff",
+                  backgroundColor: `${theme.colors.primary}`,
+                  color: `${theme.colors.white}`,
                   textTransform: "none",
                 }}
               >

@@ -4,6 +4,7 @@ import { Badge, Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import { Courier } from "../../Types/courier";
 import { StyledCardHeader, StyledH1, StyledImg } from "./couriercard.styles";
 import CourierSkeleton from "../../Skeleton/courierSkeleton";
+import { theme } from "../../Theme/Theme";
 
 const Couriercard = () => {
   const { data, isLoading } = useGetAllCouriersQuery<{
@@ -50,9 +51,9 @@ const Couriercard = () => {
                       sx={{
                         maxWidth: 345,
                         cursor: "pointer",
-                        backgroundColor: "linen",
+                        backgroundColor: `${theme.colors.linen}`,
                         border:
-                          selectedId === item.id ? "solid 3px #1976d2" : "none",
+                          selectedId === item.id ? `solid 3px ${theme.colors.primary}` : "none",
                       }}
                       onClick={() => setSelectedId(item.id)}
                     >
@@ -64,7 +65,7 @@ const Couriercard = () => {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "darkslategrey",
+                            color: `${theme.colors.darkslategrey}`,
                             fontSize: "17px",
                             fontWeight: "500",
                           }}
@@ -74,7 +75,7 @@ const Couriercard = () => {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "darkslategrey",
+                            color: `${theme.colors.darkslategrey}`,
                             fontSize: "17px",
                             fontWeight: "500",
                           }}
@@ -84,7 +85,7 @@ const Couriercard = () => {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "darkslategrey",
+                            color: `${theme.colors.darkslategrey}`,
                             fontSize: "17px",
                             fontWeight: "500",
                           }}
