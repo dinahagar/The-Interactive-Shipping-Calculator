@@ -12,24 +12,24 @@ import { OriginContext } from "../../../../Context/originContext";
 const Origin = () => {
   const context = useContext(OriginContext);
   if (!context) throw new Error("Must be used inside OriginProvider");
-  const { state, dispatch } = context;
+  const { originState, dispatch } = context;
 
   const handleCountryCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
-      updateData({ origin: { ...state.origin, countryCode: e.target.value } }),
+      updateData({ origin: { ...originState.origin, countryCode: e.target.value } }),
     );
   };
   const handleCountryChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
-      updateData({ origin: { ...state.origin, country: e.target.value } }),
+      updateData({ origin: { ...originState.origin, country: e.target.value } }),
     );
   };
   const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateData({ origin: { ...state.origin, city: e.target.value } }));
+    dispatch(updateData({ origin: { ...originState.origin, city: e.target.value } }));
   };
   const handleStreetChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
-      updateData({ origin: { ...state.origin, street: e.target.value } }),
+      updateData({ origin: { ...originState.origin, street: e.target.value } }),
     );
   };
 
@@ -46,7 +46,7 @@ const Origin = () => {
               label="+20"
               variant="outlined"
               sx={{ width: "15%", minWidth: "60px" }}
-              value={state.origin.countryCode}
+              value={originState.origin.countryCode}
               onChange={handleCountryCodeChange}
             />
             <TextField
@@ -54,7 +54,7 @@ const Origin = () => {
               label="Country"
               variant="outlined"
               sx={{ width: "80%" }}
-              value={state.origin.country}
+              value={originState.origin.country}
               onChange={handleCountryChange}
             />
           </StyledCodeDiv>
@@ -62,14 +62,14 @@ const Origin = () => {
             id="outlined-basic"
             label="City"
             variant="outlined"
-            value={state.origin.city}
+            value={originState.origin.city}
             onChange={handleCityChange}
           />
           <TextField
             id="outlined-basic"
             label="Street"
             variant="outlined"
-            value={state.origin.street}
+            value={originState.origin.street}
             onChange={handleStreetChange}
           />
         </StyledForm>

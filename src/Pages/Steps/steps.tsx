@@ -16,6 +16,7 @@ import Destination from "./Components/DestinationDetails/destination";
 import PackageDim from "./Components/PackageDimensions/package-dim";
 import Couriercard from "../CourierCard/couriercard";
 import { theme } from "../../Theme/Theme";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   {
@@ -35,6 +36,7 @@ const steps = [
 const Steps = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -88,8 +90,8 @@ const Steps = () => {
                 >
                   Reset
                 </Button>
-                <Button variant="contained" sx={{ textTransform: "none" }}>
-                  Next
+                <Button variant="contained" sx={{ textTransform: "none" }} onClick={() => navigate(`/checkout`)}>
+                  Review
                 </Button>
               </Box>
             </Box>

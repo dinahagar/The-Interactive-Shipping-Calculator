@@ -6,8 +6,8 @@ import Steps from "./Pages/Steps/steps";
 import { PackageProvider } from "./Context/packageDimContext";
 import { OriginProvider } from "./Context/originContext";
 import { DestinationProvider } from "./Context/destinationContext";
-import Checkout from "./Pages/Checkout/checkout";
 import { CourierProvider } from "./Context/courierContext";
+import Checkout from "./Pages/Checkout/checkout";
 
 function App() {
   return (

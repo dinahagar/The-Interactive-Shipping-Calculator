@@ -9,6 +9,8 @@ declare module "styled-components" {
       linen: string;
       darkslategrey: string;
       darkgrey: string;
+      ghostwhite: string;
+      lightgrey: string;
     };
   }
 }

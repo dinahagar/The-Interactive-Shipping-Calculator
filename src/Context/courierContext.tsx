@@ -3,7 +3,7 @@ import { Action } from "@reduxjs/toolkit";
 import { courierSlice, CourierState } from "../Store/Reducers/courierSlice";
 
 type CourierContextType = {
-  state: CourierState;
+  courierState: CourierState;
   dispatch: React.Dispatch<Action>;
 };
 
@@ -12,13 +12,13 @@ export const CourierContext = createContext<
 >(undefined);
 
 export const CourierProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(
+  const [courierState, dispatch] = useReducer(
     courierSlice.reducer,
     courierSlice.getInitialState(),
   );
 
   return (
-    <CourierContext.Provider value={{ state, dispatch }}>
+    <CourierContext.Provider value={{ courierState, dispatch }}>
       {children}
     </CourierContext.Provider>
   );

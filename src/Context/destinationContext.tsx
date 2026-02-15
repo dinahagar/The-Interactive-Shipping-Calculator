@@ -3,7 +3,7 @@ import { destinationSlice, DestinationState } from "../Store/Reducers/destinatio
 import { Action } from "@reduxjs/toolkit";
 
 type DestinationContextType = {
-  state: DestinationState;
+  destinationState: DestinationState;
   dispatch: React.Dispatch<Action>;
 };
 
@@ -12,13 +12,13 @@ export const DestinationContext = createContext<
 >(undefined);
 
 export const DestinationProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(
+  const [destinationState, dispatch] = useReducer(
     destinationSlice.reducer,
     destinationSlice.getInitialState(),
   );
 
   return (
-    <DestinationContext.Provider value={{ state, dispatch }}>
+    <DestinationContext.Provider value={{ destinationState, dispatch }}>
       {children}
     </DestinationContext.Provider>
   );

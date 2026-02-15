@@ -15,24 +15,22 @@ const PackageDim = () => {
 
   if (!context) throw new Error("Must be used inside PackageProvider");
 
-  const { state, dispatch } = context;
+  const { packageState, dispatch } = context;
 
   const handleWeightChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateData({
-        packageDetails: { ...state.packageDetails, weight: e.target.value },
+        packageDetails: { ...packageState.packageDetails, weight: e.target.value },
       }),
     );
   };
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateData({
-        packageDetails: { ...state.packageDetails, volume: e.target.value },
+        packageDetails: { ...packageState.packageDetails, volume: e.target.value },
       }),
     );
   };
-
-  // console.log("state", state);
 
   return (
     <div>
@@ -43,14 +41,14 @@ const PackageDim = () => {
             id="outlined-basic"
             label="Weight"
             variant="outlined"
-            value={state.packageDetails.weight}
+            value={packageState.packageDetails.weight}
             onChange={handleWeightChange}
           />
           <TextField
             id="outlined-basic"
             label="Volume"
             variant="outlined"
-            value={state.packageDetails.volume}
+            value={packageState.packageDetails.volume}
             onChange={handleVolumeChange}
           />
         </StyledForm>

@@ -8,5 +8,7 @@ export const theme: DefaultTheme = {
     linen: "#faf0e6",
     darkslategrey: "#2f4f4f",
     darkgrey: "#00000042",
+    ghostwhite: "#f8f8ff",
+    lightgrey: "#e6e4e4"
   },
 };
