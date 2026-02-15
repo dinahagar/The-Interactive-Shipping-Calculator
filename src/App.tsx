@@ -8,6 +8,7 @@ import { OriginProvider } from "./Context/originContext";
 import { DestinationProvider } from "./Context/destinationContext";
 import { CourierProvider } from "./Context/courierContext";
 import Checkout from "./Pages/Checkout/checkout";
+import Lastpage from "./Pages/LastPage/lastpage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/steps" element={<Steps />} />
                   <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/lastpage" element={<Lastpage />} />
                 </Routes>
               </Router>
             </CourierProvider>

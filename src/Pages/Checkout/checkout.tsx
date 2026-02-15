@@ -137,7 +137,7 @@ const Checkout = () => {
           <Button
             variant="contained"
             sx={{ textTransform: "none" }}
-            onClick={() => navigate(`/`)}
+            onClick={() => navigate(`/lastpage`)}
           >
             Okay
           </Button>
