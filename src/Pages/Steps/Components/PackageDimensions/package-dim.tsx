@@ -16,14 +16,14 @@ const PackageDim = () => {
 
   if (!context) throw new Error("Must be used inside PackageProvider");
 
-  const { packageState, dispatch } = context;
+  const { packageState, dispatchPackage } = context;
 
   const [errors, setErrors] = useState<{
     weight?: string[];
   }>({});
 
   const handleWeightChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchPackage(
       updateData({
         packageDetails: {
           ...packageState.packageDetails,
@@ -44,7 +44,7 @@ const PackageDim = () => {
   };
 
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchPackage(
       updateData({
         packageDetails: {
           ...packageState.packageDetails,

@@ -15,14 +15,14 @@ import { originSchema } from "../../../../Components/Validation/originValidation
 const Origin = () => {
   const context = useContext(OriginContext);
   if (!context) throw new Error("Must be used inside OriginProvider");
-  const { originState, dispatch } = context;
+  const { originState, dispatchOrigin } = context;
 
   const [errors, setErrors] = useState<{
     countryCode?: string[];
   }>({});
 
   const handleCountryCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchOrigin(
       updateData({
         origin: { ...originState.origin, countryCode: e.target.value },
       }),
@@ -39,19 +39,19 @@ const Origin = () => {
     }
   };
   const handleCountryChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchOrigin(
       updateData({
         origin: { ...originState.origin, country: e.target.value },
       }),
     );
   };
   const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchOrigin(
       updateData({ origin: { ...originState.origin, city: e.target.value } }),
     );
   };
   const handleStreetChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchOrigin(
       updateData({ origin: { ...originState.origin, street: e.target.value } }),
     );
   };

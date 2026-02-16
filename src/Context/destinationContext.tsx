@@ -5,7 +5,7 @@ import { DestinationState } from "../Types/destinationTypes";
 
 type DestinationContextType = {
   destinationState: DestinationState;
-  dispatch: React.Dispatch<Action>;
+  dispatchDestination: React.Dispatch<Action>;
 };
 
 export const DestinationContext = createContext<
@@ -13,13 +13,13 @@ export const DestinationContext = createContext<
 >(undefined);
 
 export const DestinationProvider = ({ children }: { children: ReactNode }) => {
-  const [destinationState, dispatch] = useReducer(
+  const [destinationState, dispatchDestination] = useReducer(
     destinationSlice.reducer,
     destinationSlice.getInitialState(),
   );
 
   return (
-    <DestinationContext.Provider value={{ destinationState, dispatch }}>
+    <DestinationContext.Provider value={{ destinationState, dispatchDestination }}>
       {children}
     </DestinationContext.Provider>
   );

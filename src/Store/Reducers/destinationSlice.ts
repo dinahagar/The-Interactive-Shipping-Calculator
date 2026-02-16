@@ -18,9 +18,10 @@ export const destinationSlice = createSlice({
       ...state,
       ...action.payload,
     }),
+    resetDestinationData: () => initialState,
   },
 });
 
-export const { updateData } = destinationSlice.actions;
+export const { updateData, resetDestinationData } = destinationSlice.actions;
 
 export default destinationSlice.reducer;

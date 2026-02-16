@@ -15,14 +15,14 @@ import { destinationSchema } from "../../../../Components/Validation/destination
 const Destination = () => {
   const context = useContext(DestinationContext);
   if (!context) throw new Error("Must be used inside DestinationProvider");
-  const { destinationState, dispatch } = context;
+  const { destinationState, dispatchDestination } = context;
 
   const [errors, setErrors] = useState<{
     countryCode?: string[];
   }>({});
 
   const handleCountryCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchDestination(
       updateData({
         destination: {
           ...destinationState.destination,
@@ -42,7 +42,7 @@ const Destination = () => {
     }
   };
   const handleCountryChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchDestination(
       updateData({
         destination: {
           ...destinationState.destination,
@@ -52,14 +52,14 @@ const Destination = () => {
     );
   };
   const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchDestination(
       updateData({
         destination: { ...destinationState.destination, city: e.target.value },
       }),
     );
   };
   const handleStreetChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
+    dispatchDestination(
       updateData({
         destination: {
           ...destinationState.destination,

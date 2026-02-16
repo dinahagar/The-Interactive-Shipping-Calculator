@@ -5,7 +5,7 @@ import { OriginState } from "../Types/originTypes";
 
 type OriginContextType = {
   originState: OriginState;
-  dispatch: React.Dispatch<Action>;
+  dispatchOrigin: React.Dispatch<Action>;
 };
 
 export const OriginContext = createContext<OriginContextType | undefined>(
@@ -13,13 +13,13 @@ export const OriginContext = createContext<OriginContextType | undefined>(
 );
 
 export const OriginProvider = ({ children }: { children: ReactNode }) => {
-  const [originState, dispatch] = useReducer(
+  const [originState, dispatchOrigin] = useReducer(
     originSlice.reducer,
     originSlice.getInitialState(),
   );
 
   return (
-    <OriginContext.Provider value={{ originState, dispatch }}>
+    <OriginContext.Provider value={{ originState, dispatchOrigin }}>
       {children}
     </OriginContext.Provider>
   );

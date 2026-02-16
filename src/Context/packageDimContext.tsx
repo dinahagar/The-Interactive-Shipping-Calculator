@@ -5,7 +5,7 @@ import { PackageState } from "../Types/packageTypes";
 
 type PackageContextType = {
   packageState: PackageState;
-  dispatch: React.Dispatch<Action>;
+  dispatchPackage: React.Dispatch<Action>;
 };
 
 export const PackageContext = createContext<PackageContextType | undefined>(
@@ -14,10 +14,10 @@ export const PackageContext = createContext<PackageContextType | undefined>(
 
 export const PackageProvider = ({ children }: { children: ReactNode }) => {
 
-  const [packageState, dispatch] = useReducer(packageSlice.reducer, packageSlice.getInitialState());
+  const [packageState, dispatchPackage] = useReducer(packageSlice.reducer, packageSlice.getInitialState());
 
   return (
-    <PackageContext.Provider value={{ packageState, dispatch }}>
+    <PackageContext.Provider value={{ packageState, dispatchPackage }}>
       {children}
     </PackageContext.Provider>
   );

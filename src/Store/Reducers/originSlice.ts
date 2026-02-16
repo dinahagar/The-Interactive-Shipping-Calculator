@@ -18,9 +18,10 @@ export const originSlice = createSlice({
       ...state,
       ...action.payload,
     }),
+    resetOriginData: () => initialState,
   },
 });
 
-export const { updateData } = originSlice.actions;
+export const { updateData, resetOriginData } = originSlice.actions;
 
 export default originSlice.reducer;

@@ -21,6 +21,10 @@ import { OriginContext } from "../../Context/originContext";
 import { DestinationContext } from "../../Context/destinationContext";
 import { PackageContext } from "../../Context/packageDimContext";
 import { CourierContext } from "../../Context/courierContext";
+import { resetCourierData } from "../../Store/Reducers/courierSlice";
+import { resetPackageData } from "../../Store/Reducers/packageSlice";
+import { resetDestinationData } from "../../Store/Reducers/destinationSlice";
+import { resetOriginData } from "../../Store/Reducers/originSlice";
 
 const steps = [
   {
@@ -46,20 +50,20 @@ const Steps = () => {
 
   const originContext = useContext(OriginContext);
   if (!originContext) throw new Error("Must be used inside OriginProvider");
-  const { originState } = originContext;
+  const { originState, dispatchOrigin } = originContext;
 
   const destinationContext = useContext(DestinationContext);
   if (!destinationContext)
     throw new Error("Must be used inside DestinationProvider");
-  const { destinationState } = destinationContext;
+  const { destinationState, dispatchDestination } = destinationContext;
 
   const packageContext = useContext(PackageContext);
   if (!packageContext) throw new Error("Must be used inside PackageProvider");
-  const { packageState } = packageContext;
+  const { packageState, dispatchPackage } = packageContext;
 
   const courierContext = useContext(CourierContext);
   if (!courierContext) throw new Error("Must be used inside CourierProvider");
-  const { courierState } = courierContext;
+  const { courierState, dispatchCourier } = courierContext;
 
   const handleNext = () => {
     if (Number(stepId) === stepsLength) {
@@ -74,6 +78,11 @@ const Steps = () => {
   };
 
   const handleReset = () => {
+    dispatchCourier(resetCourierData);
+    dispatchPackage(resetPackageData);
+    dispatchDestination(resetDestinationData);
+    dispatchOrigin(resetOriginData);
+
     navigate(`/steps/1`);
     setOpen(false);
   };
@@ -174,7 +183,9 @@ const Steps = () => {
                       isNaN(Number(originState.origin.countryCode)))) ||
                   (Number(stepId) === 2 &&
                     (!destinationState.destination.countryCode ||
-                      isNaN(Number(destinationState.destination.countryCode)))) ||
+                      isNaN(
+                        Number(destinationState.destination.countryCode),
+                      ))) ||
                   (Number(stepId) === 3 &&
                     (!packageState.packageDetails.weight ||
                       Number(packageState.packageDetails.weight) <= 0))

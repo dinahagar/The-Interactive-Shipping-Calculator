@@ -13,9 +13,10 @@ export const courierSlice = createSlice({
     setSelectedCourier: (state, action: PayloadAction<Courier>) => {
       state.selectedCourier = action.payload;
     },
+    resetCourierData: () => initialState,
   },
 });
 
-export const { setSelectedCourier } = courierSlice.actions;
+export const { setSelectedCourier, resetCourierData } = courierSlice.actions;
 
 export default courierSlice.reducer;

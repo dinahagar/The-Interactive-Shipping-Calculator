@@ -5,7 +5,7 @@ import { CourierState } from "../Types/courierTypes";
 
 type CourierContextType = {
   courierState: CourierState;
-  dispatch: React.Dispatch<Action>;
+  dispatchCourier: React.Dispatch<Action>;
 };
 
 export const CourierContext = createContext<
@@ -13,13 +13,13 @@ export const CourierContext = createContext<
 >(undefined);
 
 export const CourierProvider = ({ children }: { children: ReactNode }) => {
-  const [courierState, dispatch] = useReducer(
+  const [courierState, dispatchCourier] = useReducer(
     courierSlice.reducer,
     courierSlice.getInitialState(),
   );
 
   return (
-    <CourierContext.Provider value={{ courierState, dispatch }}>
+    <CourierContext.Provider value={{ courierState, dispatchCourier }}>
       {children}
     </CourierContext.Provider>
   );

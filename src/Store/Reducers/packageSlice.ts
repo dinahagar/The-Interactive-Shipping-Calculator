@@ -16,9 +16,10 @@ export const packageSlice = createSlice({
       ...state,
       ...action.payload,
     }),
+    resetPackageData: () => initialState,
   },
 });
 
-export const { updateData } = packageSlice.actions;
+export const { updateData, resetPackageData } = packageSlice.actions;
 
 export default packageSlice.reducer;

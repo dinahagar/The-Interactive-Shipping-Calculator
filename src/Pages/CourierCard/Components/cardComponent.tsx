@@ -13,13 +13,13 @@ const CardComponent = ({ item, data }: { item: Courier; data: Courier[] }) => {
 
   const selectedCourierId = courierState.selectedCourier?.id;
 
-  const { dispatch } = courierContext;
+  const { dispatchCourier } = courierContext;
 
   const handleSelectCourier = (id: number) => {
     const selectedCourier = data.find((c: Courier) => c.id === id);
 
     if (selectedCourier) {
-      dispatch(setSelectedCourier(selectedCourier));
+      dispatchCourier(setSelectedCourier(selectedCourier));
     }
   };
 
