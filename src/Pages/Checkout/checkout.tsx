@@ -27,7 +27,7 @@ const Checkout = () => {
   const courierContext = useContext(CourierContext);
   if (!courierContext) throw new Error("Must be used inside CourierProvider");
   const { courierState } = courierContext;
-
+  
   return (
     <Box sx={{ padding: "30px" }}>
       <StyledH1>Review Your Data</StyledH1>
@@ -130,7 +130,7 @@ const Checkout = () => {
           <Button
             variant="outlined"
             sx={{ textTransform: "none" }}
-            onClick={() => navigate(`/steps`)}
+            onClick={() => navigate(`/steps/4`)}
           >
             Back
           </Button>

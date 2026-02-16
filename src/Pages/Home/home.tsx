@@ -16,7 +16,7 @@ const Home = () => {
                 borderRadius: '30px',
                 textTransform: 'none'
             }}
-            onClick={() => navigate(`/steps`)}
+            onClick={() => navigate(`/steps/1`)}
         >
             Get Started
         </Button>    

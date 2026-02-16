@@ -15,6 +15,6 @@ export const StyledCardHeader = styled(CardHeader)`
 export const StyledImg = styled.img`
   width: 50px;
   height: 50px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 32px;
 `;

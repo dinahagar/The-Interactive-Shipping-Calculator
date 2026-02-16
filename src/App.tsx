@@ -21,7 +21,7 @@ function App() {
                 <Header />
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/steps" element={<Steps />} />
+                  <Route path="/steps/:stepId" element={<Steps />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/lastpage" element={<Lastpage />} />
                 </Routes>

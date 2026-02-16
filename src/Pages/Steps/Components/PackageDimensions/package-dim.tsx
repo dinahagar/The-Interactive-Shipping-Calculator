@@ -1,14 +1,15 @@
 import {
   StyledForm,
   StyledFormDiv,
+  StyledNote,
   StyledP,
+  StyledSpan,
 } from "../OriginDetails/origin.styles";
 import { TextField } from "@mui/material";
-import {
-  updateData,
-} from "../../../../Store/Reducers/packageSlice";
-import { ChangeEvent, useContext } from "react";
+import { updateData } from "../../../../Store/Reducers/packageSlice";
+import { ChangeEvent, useContext, useState } from "react";
 import { PackageContext } from "../../../../Context/packageDimContext";
+import { packageSchema } from "../../../../Components/Validation/packageValidation";
 
 const PackageDim = () => {
   const context = useContext(PackageContext);
@@ -17,17 +18,38 @@ const PackageDim = () => {
 
   const { packageState, dispatch } = context;
 
+  const [errors, setErrors] = useState<{
+    weight?: string[];
+  }>({});
+
   const handleWeightChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateData({
-        packageDetails: { ...packageState.packageDetails, weight: e.target.value },
+        packageDetails: {
+          ...packageState.packageDetails,
+          weight: e.target.value,
+        },
       }),
     );
+
+    if (packageState.packageDetails.weight) {
+      const result = packageSchema.safeParse(packageState.packageDetails);
+
+      if (!result.success) {
+        setErrors(result.error.flatten().fieldErrors);
+      } else {
+        setErrors({});
+      }
+    }
   };
+
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateData({
-        packageDetails: { ...packageState.packageDetails, volume: e.target.value },
+        packageDetails: {
+          ...packageState.packageDetails,
+          volume: e.target.value,
+        },
       }),
     );
   };
@@ -35,15 +57,22 @@ const PackageDim = () => {
   return (
     <div>
       <StyledP>Please Enter Your Package Dimensions</StyledP>
+      <StyledNote>**Please enter your package's weight</StyledNote>
       <StyledFormDiv>
         <StyledForm>
           <TextField
-            id="outlined-basic"
+            required
+            id="outlined-required"
             label="Weight"
             variant="outlined"
             value={packageState.packageDetails.weight}
             onChange={handleWeightChange}
+            error={!!errors.weight}
           />
+          {errors.weight?.[0] && (
+            <StyledSpan> {errors.weight?.[0]} </StyledSpan>
+          )}
+
           <TextField
             id="outlined-basic"
             label="Volume"

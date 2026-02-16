@@ -10,13 +10,17 @@ import {
   StepLabel,
   Stepper,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import Origin from "./Components/OriginDetails/origin";
 import Destination from "./Components/DestinationDetails/destination";
 import PackageDim from "./Components/PackageDimensions/package-dim";
 import Couriercard from "../CourierCard/couriercard";
 import { theme } from "../../Theme/Theme";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { OriginContext } from "../../Context/originContext";
+import { DestinationContext } from "../../Context/destinationContext";
+import { PackageContext } from "../../Context/packageDimContext";
+import { CourierContext } from "../../Context/courierContext";
 
 const steps = [
   {
@@ -34,25 +38,48 @@ const steps = [
 ];
 
 const Steps = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const { stepId } = useParams();
+  const stepsLength = steps.length;
+  const activeStep = Number(stepId) - 1;
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
+  const originContext = useContext(OriginContext);
+  if (!originContext) throw new Error("Must be used inside OriginProvider");
+  const { originState } = originContext;
+
+  const destinationContext = useContext(DestinationContext);
+  if (!destinationContext)
+    throw new Error("Must be used inside DestinationProvider");
+  const { destinationState } = destinationContext;
+
+  const packageContext = useContext(PackageContext);
+  if (!packageContext) throw new Error("Must be used inside PackageProvider");
+  const { packageState } = packageContext;
+
+  const courierContext = useContext(CourierContext);
+  if (!courierContext) throw new Error("Must be used inside CourierProvider");
+  const { courierState } = courierContext;
+
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (Number(stepId) === stepsLength) {
+      navigate(`/steps/${Number(stepId) + 1}`);
+    } else {
+      navigate(`/steps/${Number(stepId) + 1}`);
+    }
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    navigate(`/steps/${Number(stepId) - 1}`);
+  };
+
+  const handleReset = () => {
+    navigate(`/steps/1`);
+    setOpen(false);
   };
 
   const handleOpenPopup = () => {
     setOpen(true);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setOpen(false);
   };
 
   const handleClose = () => {
@@ -90,7 +117,15 @@ const Steps = () => {
                 >
                   Reset
                 </Button>
-                <Button variant="contained" sx={{ textTransform: "none" }} onClick={() => navigate(`/checkout`)}>
+                <Button
+                  variant="contained"
+                  sx={{ textTransform: "none" }}
+                  onClick={() => navigate(`/checkout`)}
+                  disabled={
+                    Number(stepId) === 4 &&
+                    !(Number(stepId) === 4 && courierState.selectedCourier)
+                  }
+                >
                   Review
                 </Button>
               </Box>
@@ -133,6 +168,17 @@ const Steps = () => {
                   color: `${theme.colors.white}`,
                   textTransform: "none",
                 }}
+                disabled={
+                  (Number(stepId) === 1 &&
+                    (!originState.origin.countryCode ||
+                      isNaN(Number(originState.origin.countryCode)))) ||
+                  (Number(stepId) === 2 &&
+                    (!destinationState.destination.countryCode ||
+                      isNaN(Number(destinationState.destination.countryCode)))) ||
+                  (Number(stepId) === 3 &&
+                    (!packageState.packageDetails.weight ||
+                      Number(packageState.packageDetails.weight) <= 0))
+                }
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>

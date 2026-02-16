@@ -9,6 +9,7 @@ export const theme: DefaultTheme = {
     darkslategrey: "#2f4f4f",
     darkgrey: "#00000042",
     ghostwhite: "#f8f8ff",
-    lightgrey: "#e6e4e4"
+    lightgrey: "#e6e4e4",
+    error: "#d32f2f"
   },
 };
