@@ -7,3 +7,8 @@ export interface Courier {
   estimatedDeliveryTimeline: number;
   image: string;
 }
+
+export interface CourierState {
+  couriers: Courier[];
+  selectedCourier: Courier | null;
+}

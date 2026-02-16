@@ -1,6 +1,6 @@
 import { useGetAllCouriersQuery } from "../../Store/Services/courier";
 import { Badge, Box, Grid } from "@mui/material";
-import { Courier } from "../../Types/courier";
+import { Courier } from "../../Types/courierTypes";
 import { StyledH1 } from "./couriercard.styles";
 import CourierSkeleton from "../../Skeleton/courierSkeleton";
 import CardComponent from "./Components/cardComponent";

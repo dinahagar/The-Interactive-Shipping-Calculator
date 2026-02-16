@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Courier } from "../../Types/courier";
-
-export interface CourierState {
-  couriers: Courier[];
-  selectedCourier: Courier | null;
-}
+import { Courier, CourierState } from "../../Types/courierTypes";
 
 const initialState: CourierState = {
   couriers: [],

@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useReducer } from "react";
-import { originSlice, OriginState } from "../Store/Reducers/originSlice";
+import { originSlice } from "../Store/Reducers/originSlice";
 import { Action } from "@reduxjs/toolkit";
+import { OriginState } from "../Types/originTypes";
 
 type OriginContextType = {
   originState: OriginState;

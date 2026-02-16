@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useReducer } from "react";
-import { destinationSlice, DestinationState } from "../Store/Reducers/destinationSlice";
+import { destinationSlice } from "../Store/Reducers/destinationSlice";
 import { Action } from "@reduxjs/toolkit";
+import { DestinationState } from "../Types/destinationTypes";
 
 type DestinationContextType = {
   destinationState: DestinationState;

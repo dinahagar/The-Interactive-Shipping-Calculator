@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface DestinationState {
-  destination: {
-    countryCode: string;
-    country: string;
-    city: string;
-    street: string;
-  };
-}
+import { DestinationState } from "../../Types/destinationTypes";
 
 const initialState: DestinationState = {
   destination: {

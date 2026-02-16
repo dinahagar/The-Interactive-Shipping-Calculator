@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface PackageState {
-  packageDetails: {
-    weight: string;
-    volume: string;
-  };
-}
+import { PackageState } from "../../Types/packageTypes";
 
 const initialState: PackageState = {
   packageDetails: {

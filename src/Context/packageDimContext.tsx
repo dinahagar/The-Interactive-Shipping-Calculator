@@ -1,6 +1,7 @@
 import { Action } from "@reduxjs/toolkit";
 import { createContext, ReactNode, useReducer } from "react";
-import { packageSlice, PackageState } from "../Store/Reducers/packageSlice";
+import { packageSlice } from "../Store/Reducers/packageSlice";
+import { PackageState } from "../Types/packageTypes";
 
 type PackageContextType = {
   packageState: PackageState;

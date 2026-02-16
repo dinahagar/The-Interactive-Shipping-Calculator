@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useReducer } from "react";
 import { Action } from "@reduxjs/toolkit";
-import { courierSlice, CourierState } from "../Store/Reducers/courierSlice";
+import { courierSlice } from "../Store/Reducers/courierSlice";
+import { CourierState } from "../Types/courierTypes";
 
 type CourierContextType = {
   courierState: CourierState;

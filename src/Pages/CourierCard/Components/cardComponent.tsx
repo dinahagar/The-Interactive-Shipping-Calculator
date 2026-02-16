@@ -4,7 +4,7 @@ import { StyledCardHeader, StyledImg } from "../couriercard.styles";
 import { theme } from "../../../Theme/Theme";
 import { CourierContext } from "../../../Context/courierContext";
 import { setSelectedCourier } from "../../../Store/Reducers/courierSlice";
-import { Courier } from "../../../Types/courier";
+import { Courier } from "../../../Types/courierTypes";
 
 const CardComponent = ({ item, data }: { item: Courier; data: Courier[] }) => {
   const courierContext = useContext(CourierContext);
