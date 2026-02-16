@@ -1,33 +1,32 @@
-import { useContext } from "react";
-import { PackageContext } from "../../Context/packageDimContext";
-import { CourierContext } from "../../Context/courierContext";
 import { Box, Button, Typography } from "@mui/material";
-import { OriginContext } from "../../Context/originContext";
-import { DestinationContext } from "../../Context/destinationContext";
 import CardComponent from "../CourierCard/Components/cardComponent";
 import { useNavigate } from "react-router-dom";
 import { StyledBox, StyledH1 } from "./checkout.styles";
+import { resetCourierData } from "../../Store/Reducers/courierSlice";
+import { resetPackageData } from "../../Store/Reducers/packageSlice";
+import { resetDestinationData } from "../../Store/Reducers/destinationSlice";
+import { resetOriginData } from "../../Store/Reducers/originSlice";
+import { useOrigin } from "../../Hooks/useOrigin";
+import { useDestination } from "../../Hooks/useDestination";
+import { usePackage } from "../../Hooks/usePackage";
+import { useCourier } from "../../Hooks/useCourier";
 
 const Checkout = () => {
   const navigate = useNavigate();
 
-  const originContext = useContext(OriginContext);
-  if (!originContext) throw new Error("Must be used inside OriginProvider");
-  const { originState } = originContext;
+  const { originState, dispatchOrigin } = useOrigin();
+  const { destinationState, dispatchDestination } = useDestination();
+  const { packageState, dispatchPackage } = usePackage();
+  const { courierState, dispatchCourier } = useCourier();
 
-  const destinationContext = useContext(DestinationContext);
-  if (!destinationContext)
-    throw new Error("Must be used inside DestinationProvider");
-  const { destinationState } = destinationContext;
+  const handleOkayBtn = () => {
+    dispatchCourier(resetCourierData);
+    dispatchPackage(resetPackageData);
+    dispatchDestination(resetDestinationData);
+    dispatchOrigin(resetOriginData);
+    navigate(`/lastpage`);
+  };
 
-  const packageContext = useContext(PackageContext);
-  if (!packageContext) throw new Error("Must be used inside PackageProvider");
-  const { packageState } = packageContext;
-
-  const courierContext = useContext(CourierContext);
-  if (!courierContext) throw new Error("Must be used inside CourierProvider");
-  const { courierState } = courierContext;
-  
   return (
     <Box sx={{ padding: "30px" }}>
       <StyledH1>Review Your Data</StyledH1>
@@ -80,20 +79,20 @@ const Checkout = () => {
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
               Country:{" "}
-              {destinationState.destination.countryCode
-                ? destinationState.destination.countryCode
+              {destinationState.destination.country
+                ? destinationState.destination.country
                 : "Undefined"}
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
               City:{" "}
-              {destinationState.destination.countryCode
-                ? destinationState.destination.countryCode
+              {destinationState.destination.city
+                ? destinationState.destination.city
                 : "Undefined"}
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
               Street:{" "}
-              {destinationState.destination.countryCode
-                ? destinationState.destination.countryCode
+              {destinationState.destination.street
+                ? destinationState.destination.street
                 : "Undefined"}
             </Typography>
           </Box>
@@ -137,7 +136,7 @@ const Checkout = () => {
           <Button
             variant="contained"
             sx={{ textTransform: "none" }}
-            onClick={() => navigate(`/lastpage`)}
+            onClick={handleOkayBtn}
           >
             Okay
           </Button>

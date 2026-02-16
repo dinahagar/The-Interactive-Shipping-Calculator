@@ -7,15 +7,13 @@ import {
   StyledP,
   StyledSpan,
 } from "../OriginDetails/origin.styles";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { updateData } from "../../../../Store/Reducers/destinationSlice";
-import { DestinationContext } from "../../../../Context/destinationContext";
 import { destinationSchema } from "../../../../Components/Validation/destinationValidation";
+import { useDestination } from "../../../../Hooks/useDestination";
 
 const Destination = () => {
-  const context = useContext(DestinationContext);
-  if (!context) throw new Error("Must be used inside DestinationProvider");
-  const { destinationState, dispatchDestination } = context;
+  const { destinationState, dispatchDestination } = useDestination();
 
   const [errors, setErrors] = useState<{
     countryCode?: string[];

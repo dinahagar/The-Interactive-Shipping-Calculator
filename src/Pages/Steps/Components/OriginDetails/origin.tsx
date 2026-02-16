@@ -8,14 +8,12 @@ import {
   StyledSpan,
 } from "./origin.styles";
 import { updateData } from "../../../../Store/Reducers/originSlice";
-import { ChangeEvent, useContext, useState } from "react";
-import { OriginContext } from "../../../../Context/originContext";
+import { ChangeEvent, useState } from "react";
 import { originSchema } from "../../../../Components/Validation/originValidation";
+import { useOrigin } from "../../../../Hooks/useOrigin";
 
 const Origin = () => {
-  const context = useContext(OriginContext);
-  if (!context) throw new Error("Must be used inside OriginProvider");
-  const { originState, dispatchOrigin } = context;
+  const { originState, dispatchOrigin } = useOrigin();
 
   const [errors, setErrors] = useState<{
     countryCode?: string[];

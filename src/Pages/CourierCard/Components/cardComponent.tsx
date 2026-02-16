@@ -1,19 +1,14 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import React, { useContext } from "react";
 import { StyledCardHeader, StyledImg } from "../couriercard.styles";
 import { theme } from "../../../Theme/Theme";
-import { CourierContext } from "../../../Context/courierContext";
 import { setSelectedCourier } from "../../../Store/Reducers/courierSlice";
 import { Courier } from "../../../Types/courierTypes";
+import { useCourier } from "../../../Hooks/useCourier";
 
 const CardComponent = ({ item, data }: { item: Courier; data: Courier[] }) => {
-  const courierContext = useContext(CourierContext);
-  if (!courierContext) throw new Error("Must be used inside CourierProvider");
-  const { courierState } = courierContext;
+  const { courierState, dispatchCourier } = useCourier();
 
   const selectedCourierId = courierState.selectedCourier?.id;
-
-  const { dispatchCourier } = courierContext;
 
   const handleSelectCourier = (id: number) => {
     const selectedCourier = data.find((c: Courier) => c.id === id);

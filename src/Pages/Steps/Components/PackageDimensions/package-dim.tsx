@@ -7,16 +7,12 @@ import {
 } from "../OriginDetails/origin.styles";
 import { TextField } from "@mui/material";
 import { updateData } from "../../../../Store/Reducers/packageSlice";
-import { ChangeEvent, useContext, useState } from "react";
-import { PackageContext } from "../../../../Context/packageDimContext";
+import { ChangeEvent, useState } from "react";
 import { packageSchema } from "../../../../Components/Validation/packageValidation";
+import { usePackage } from "../../../../Hooks/usePackage";
 
 const PackageDim = () => {
-  const context = useContext(PackageContext);
-
-  if (!context) throw new Error("Must be used inside PackageProvider");
-
-  const { packageState, dispatchPackage } = context;
+  const { packageState, dispatchPackage } = usePackage();
 
   const [errors, setErrors] = useState<{
     weight?: string[];

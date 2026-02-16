@@ -10,21 +10,21 @@ import {
   StepLabel,
   Stepper,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React from "react";
 import Origin from "./Components/OriginDetails/origin";
 import Destination from "./Components/DestinationDetails/destination";
 import PackageDim from "./Components/PackageDimensions/package-dim";
 import Couriercard from "../CourierCard/couriercard";
 import { theme } from "../../Theme/Theme";
 import { useNavigate, useParams } from "react-router-dom";
-import { OriginContext } from "../../Context/originContext";
-import { DestinationContext } from "../../Context/destinationContext";
-import { PackageContext } from "../../Context/packageDimContext";
-import { CourierContext } from "../../Context/courierContext";
 import { resetCourierData } from "../../Store/Reducers/courierSlice";
 import { resetPackageData } from "../../Store/Reducers/packageSlice";
 import { resetDestinationData } from "../../Store/Reducers/destinationSlice";
 import { resetOriginData } from "../../Store/Reducers/originSlice";
+import { useOrigin } from "../../Hooks/useOrigin";
+import { useDestination } from "../../Hooks/useDestination";
+import { usePackage } from "../../Hooks/usePackage";
+import { useCourier } from "../../Hooks/useCourier";
 
 const steps = [
   {
@@ -48,22 +48,10 @@ const Steps = () => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const originContext = useContext(OriginContext);
-  if (!originContext) throw new Error("Must be used inside OriginProvider");
-  const { originState, dispatchOrigin } = originContext;
-
-  const destinationContext = useContext(DestinationContext);
-  if (!destinationContext)
-    throw new Error("Must be used inside DestinationProvider");
-  const { destinationState, dispatchDestination } = destinationContext;
-
-  const packageContext = useContext(PackageContext);
-  if (!packageContext) throw new Error("Must be used inside PackageProvider");
-  const { packageState, dispatchPackage } = packageContext;
-
-  const courierContext = useContext(CourierContext);
-  if (!courierContext) throw new Error("Must be used inside CourierProvider");
-  const { courierState, dispatchCourier } = courierContext;
+  const { originState, dispatchOrigin } = useOrigin();
+  const { destinationState, dispatchDestination } = useDestination();
+  const { packageState, dispatchPackage } = usePackage();
+  const { courierState, dispatchCourier } = useCourier();
 
   const handleNext = () => {
     if (Number(stepId) === stepsLength) {
@@ -187,8 +175,8 @@ const Steps = () => {
                         Number(destinationState.destination.countryCode),
                       ))) ||
                   (Number(stepId) === 3 &&
-                    (!packageState.packageDetails.weight ||
-                      Number(packageState.packageDetails.weight) <= 0))
+                    ((!packageState.packageDetails.weight ||
+                      Number(packageState.packageDetails.weight) <= 0) || isNaN(Number(packageState.packageDetails.weight))))
                 }
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
